@@ -8,6 +8,7 @@ import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
 import { PassengersModule } from './passengers/passengers.module';
 import { PassengersController } from './passengers/passengers.controller';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PassengersController } from './passengers/passengers.controller';
     DatabaseModule,
     PassengersModule,
     DriversModule,
+    UsersModule,
     
   ],
   controllers: [AppController],
