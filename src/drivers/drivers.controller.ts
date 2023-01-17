@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from '@nestjs/common';
 import { DriversService } from './drivers.service';
 import { CreateDriverDto } from './dto/create-driver.dto';
 import { UpdateDriverDto } from './dto/update-driver.dto';
@@ -20,6 +20,12 @@ export class DriversController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.driversService.findOne(+id);
+  }
+
+  @Post(':id/suspend')
+  @HttpCode(204)
+  suspend(@Param('id') id: string) {
+    return this.driversService.suspend(id);
   }
 
   // @Patch(':id')

@@ -6,7 +6,8 @@ import { DatabaseModule } from './config/database.module';
 
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
-import { PassengerModule } from './passenger/passenger.module';
+import { PassengersModule } from './passengers/passengers.module';
+import { PassengersController } from './passengers/passengers.controller';
 
 @Module({
   imports: [
@@ -22,8 +23,9 @@ import { PassengerModule } from './passenger/passenger.module';
       }),
     }),
     DatabaseModule,
+    PassengersModule,
     DriversModule,
-    PassengerModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { CreateDriverDto } from './dto/create-driver.dto';
 import { UpdateDriverDto } from './dto/update-driver.dto';
 import Driver from './entities/driver.entity';
@@ -11,6 +11,7 @@ export class DriversService {
     @InjectRepository(Driver) 
     private driverRepository: Repository<Driver>,
   ) {}
+  
   async create(createDriverDto: CreateDriverDto) {
     const newDriver = await this.driverRepository.create(createDriverDto);
     await this.driverRepository.save(newDriver);
@@ -33,6 +34,22 @@ export class DriversService {
     if (driver) {
       return driver;
     }
+
+    throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
+  }
+
+  /**
+  find by @id
+  */
+  async suspend(id) {
+    const driver = await this.driverRepository.findOne({where: {id: id}});
+    console.log(JSON.stringify(driver));
+    if (driver) {
+      driver.suspended = true;
+      let updatedDriver = await this.driverRepository.save(driver);
+      return updatedDriver;
+    }
+   
 
     throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
   }
