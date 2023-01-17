@@ -25,13 +25,15 @@ export class DriversController {
   @Post(':id/suspend')
   @HttpCode(204)
   suspend(@Param('id') id: string) {
-    return this.driversService.suspend(id);
+    return this.driversService.suspendDriver(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
-  //   return this.driversService.update(+id, updateDriverDto);
-  // }
+  @Delete(':id/suspend')
+  @HttpCode(204)
+  delete(@Param('id') id: string) {
+    return this.driversService.deleteSuspendedDriver(id);
+  }
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

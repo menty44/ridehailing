@@ -41,28 +41,32 @@ export class DriversService {
   /**
   find by @id
   */
-  async suspend(id) {
+  async suspendDriver(id) {
     const driver = await this.driverRepository.findOne({where: {id: id}});
-    console.log(JSON.stringify(driver));
     if (driver) {
       driver.suspended = true;
       let updatedDriver = await this.driverRepository.save(driver);
       return updatedDriver;
     }
    
-
     throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
   }
 
-  // async update(id: number, updateDriverDto: UpdateDriverDto) {
-  //  let data = await this.driverRepository.update(id, updateDriverDto);
-  //   const updatedDriver = await this.driverRepository.findOne(id);
-  //   if (updatedDriver) {
-  //     return updatedDriver;
-  //   }
+  async deleteSuspendedDriver(id) {
+    console.log(id)
+    let deletedDriver = await this.driverRepository
+      .createQueryBuilder("driver")
+      .delete()
+      .from(Driver)
+      .where("id= :id", {id: id})
+      // .andWhere("suspended= :suspended", {suspended: true})
+      .execute();
+      if(deletedDriver.affected === 1) {
+        return {message: "driver deleted successfully"}
+      }
 
-  //   throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
-  // }
+    throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
+  }
 
   /**
   delete by @id
