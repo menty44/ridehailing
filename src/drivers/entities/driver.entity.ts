@@ -1,3 +1,4 @@
+import { boolean } from 'joi';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -10,6 +11,9 @@ class Driver {
 
   @Column()
   public phonenumber: string;
+
+  @Column()
+  public suspended: boolean = false;
 }
 
 export default Driver;

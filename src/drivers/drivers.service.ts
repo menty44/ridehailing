@@ -8,25 +8,52 @@ import Driver from './entities/driver.entity';
 @Injectable()
 export class DriversService {
   constructor(
-    @InjectRepository(Driver) private todoRepository: Repository<Driver>,
+    @InjectRepository(Driver) 
+    private driverRepository: Repository<Driver>,
   ) {}
-  create(createDriverDto: CreateDriverDto) {
-    return 'This action adds a new driver';
+  async create(createDriverDto: CreateDriverDto) {
+    const newDriver = await this.driverRepository.create(createDriverDto);
+    await this.driverRepository.save(newDriver);
+
+    return newDriver;
   }
 
+  /**
+  find by all
+  */
   findAll() {
-    return `This action returns all drivers`;
+    return this.driverRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} driver`;
+  /**
+  find by @id
+  */
+  async findOne(id) {
+    const driver = await this.driverRepository.findOne(id);
+    if (driver) {
+      return driver;
+    }
+
+    throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
   }
 
-  update(id: number, updateDriverDto: UpdateDriverDto) {
-    return `This action updates a #${id} driver`;
-  }
+  // async update(id: number, updateDriverDto: UpdateDriverDto) {
+  //  let data = await this.driverRepository.update(id, updateDriverDto);
+  //   const updatedDriver = await this.driverRepository.findOne(id);
+  //   if (updatedDriver) {
+  //     return updatedDriver;
+  //   }
 
-  remove(id: number) {
-    return `This action removes a #${id} driver`;
+  //   throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
+  // }
+
+  /**
+  delete by @id
+  */
+  async remove(id: number) {
+    const deletedDriver = await this.driverRepository.delete(id);
+    if (!deletedDriver.affected) {
+      throw new HttpException('Driver not found', HttpStatus.NOT_FOUND);
+    }
   }
 }

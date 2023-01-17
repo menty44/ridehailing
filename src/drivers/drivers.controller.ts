@@ -13,8 +13,8 @@ export class DriversController {
   }
 
   @Get()
-  findAll() {
-    return this.driversService.findAll();
+  async findAll() {
+   return await this.driversService.findAll();
   }
 
   @Get(':id')
@@ -22,10 +22,10 @@ export class DriversController {
     return this.driversService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
-    return this.driversService.update(+id, updateDriverDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
+  //   return this.driversService.update(+id, updateDriverDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
