@@ -40,32 +40,7 @@ export class PassengersService {
   /**
   find by @id
   */
-  // async suspendPassenger(id) {
-  //   const passenger = await this.passengerRepository.findOne({where: {id: id}});
-  //   if (passenger) {
-  //     passenger.suspended = true;
-  //     let updatedPassenger = await this.passengerRepository.save(passenger);
-  //     return updatedPassenger;
-  //   }
-   
-  //   throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
-  // }
-
-  // async deleteSuspendedPassenger(id) {
-  //   console.log(id)
-  //   let deletedPassenger = await this.passengerRepository
-  //     .createQueryBuilder("passenger")
-  //     .delete()
-  //     .from(Passenger)
-  //     .where("id= :id", {id: id})
-  //     // .andWhere("suspended= :suspended", {suspended: true})
-  //     .execute();
-  //     if(deletedPassenger.affected === 1) {
-  //       return {message: "Passenger deleted successfully"}
-  //     }
-
-  //   throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
-  // }
+  
 
   /**
   delete by @id
