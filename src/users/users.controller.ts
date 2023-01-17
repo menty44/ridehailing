@@ -1,23 +1,14 @@
 import { UsersService } from './users.service';
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {
-    constructor(private readonly driversService: UsersService) {}
-
-    @Post()
-    create(@Body() createDriverDto: CreateDriverDto) {
-        return this.driversService.create(createDriverDto);
-    }
+    constructor(private readonly usersService: UsersService) {}
 
     @Get()
-    async findAll() {
-    return await this.driversService.findAll();
-    }
-
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.driversService.findOne(+id);
+    login(@Body() createUserDto: CreateUserDto) {
+        return this.usersService.login();
     }
 
 }

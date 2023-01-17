@@ -1,7 +1,7 @@
 import { boolean } from 'joi';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-export class Passenger {
+export class User {
     @PrimaryGeneratedColumn()
     public id: number;
   

@@ -1,9 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreatePassengerDto } from './dto/create-passenger.dto';
-import { UpdatePassengerDto } from './dto/update-passenger.dto';
-import { Passenger } from './entities/passenger.entity';
+import { Repository, DataSource } from 'typeorm';
+import { CreatePassengerDto } from './dto/create-passengers.dto';
+import Passenger from './entities/passenger.entity';
 
 @Injectable()
 export class PassengersService {
@@ -30,7 +29,7 @@ export class PassengersService {
   find by @id
   */
   async findOne(id) {
-    const passenger = await this.passengerRepository.findOne(id);
+    const passenger = await this.passengerRepository.findOne({where: {id: id}});
     if (passenger) {
       return passenger;
     }
@@ -38,12 +37,32 @@ export class PassengersService {
     throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
   }
 
-  // async update(id: number, updatePassengerDto: UpdatePassengerDto) {
-  //  let data = await this.passengerRepository.update(id, updatePassengerDto);
-  //   const updatedPassenger = await this.passengerRepository.findOne(id);
-  //   if (updatedPassenger) {
+  /**
+  find by @id
+  */
+  // async suspendPassenger(id) {
+  //   const passenger = await this.passengerRepository.findOne({where: {id: id}});
+  //   if (passenger) {
+  //     passenger.suspended = true;
+  //     let updatedPassenger = await this.passengerRepository.save(passenger);
   //     return updatedPassenger;
   //   }
+   
+  //   throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
+  // }
+
+  // async deleteSuspendedPassenger(id) {
+  //   console.log(id)
+  //   let deletedPassenger = await this.passengerRepository
+  //     .createQueryBuilder("passenger")
+  //     .delete()
+  //     .from(Passenger)
+  //     .where("id= :id", {id: id})
+  //     // .andWhere("suspended= :suspended", {suspended: true})
+  //     .execute();
+  //     if(deletedPassenger.affected === 1) {
+  //       return {message: "Passenger deleted successfully"}
+  //     }
 
   //   throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
   // }

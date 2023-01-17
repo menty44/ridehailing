@@ -30,7 +30,7 @@ export class DriversService {
   find by @id
   */
   async findOne(id) {
-    const driver = await this.driverRepository.findOne(id);
+    const driver = await this.driverRepository.findOne({where: {id: id}});
     if (driver) {
       return driver;
     }
@@ -39,7 +39,7 @@ export class DriversService {
   }
 
   /**
-  find by @id
+  suspend by @id
   */
   async suspendDriver(id) {
     const driver = await this.driverRepository.findOne({where: {id: id}});
@@ -59,7 +59,6 @@ export class DriversService {
       .delete()
       .from(Driver)
       .where("id= :id", {id: id})
-      // .andWhere("suspended= :suspended", {suspended: true})
       .execute();
       if(deletedDriver.affected === 1) {
         return {message: "driver deleted successfully"}
