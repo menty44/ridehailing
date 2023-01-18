@@ -11,20 +11,24 @@ import {
 } from '@nestjs/common';
 import { CreateRideDto } from './dto/create-ride.dto';
 import { RidesService } from './rides.service';
+import { CreateDriverDto } from "../drivers/dto/create-driver.dto";
 
 @Controller('rides')
 export class RideController {
   constructor(private readonly ridesService: RidesService) {}
+
   @Post(':passengerid/:driverid')
   create(
-    @Body(':passengerid/:driverid') data: any,
-    passengerid: number,
-    driverid: number,
+    @Param('passengerid') passengerid: number,
+    @Param('driverid') driverid: number,
+    @Body() data: any,
   ) {
     console.log(passengerid);
     console.log(driverid);
+    console.log(`passengerid ${typeof passengerid}`);
+    console.log(`driverid ${typeof driverid}`);
     console.log(data);
-    return this.ridesService.create(passengerid, driverid, data);
+    return this.ridesService.create(+passengerid, +driverid, data);
   }
   @Get()
   async findAll() {

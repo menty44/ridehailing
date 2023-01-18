@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectDataSource, InjectRepository } from "@nestjs/typeorm";
 import { Repository, DataSource } from 'typeorm';
 import { CreateRideDto } from './dto/create-ride.dto';
 import Ride from './entities/ride.entity';
@@ -15,31 +15,27 @@ export class RidesService {
     private passengerRepository: Repository<Passenger>,
     @InjectRepository(Driver)
     private driverRepository: Repository<Driver>,
+    @InjectDataSource() private dataSource: DataSource,
   ) {}
   async create(passenderid, driverid, data) {
-    // "passengerid": 13,
-    //   "driverid": 14,
-    //   "ridestatus": "ongoing",
     const passenger = await this.passengerRepository.findOne({
-      where: { id: passenderid },
+      where: { id: Number(passenderid) },
     });
 
-    const driver = await this.passengerRepository.findOne({
-      where: { id: driverid },
+    const driver = await this.driverRepository.findOne({
+      where: { id: Number(driverid) },
     });
 
-
-    if (passenger !== null || passenger !== undefined && driver !== null || driver !== undefined) {
+    if (passenger !== null || driver !== null || true) {
       const newDriver = await this.driverRepository.create({
         passengerid: passenger.id,
-        driverid: driverid.id,
+        driverid: driverid,
         ridestatus: 'ongoing',
         pickup: data.pickup,
         destination: data.destination,
       });
-      await this.rideRepository.save(newDriver);
 
-      return newDriver;
+      return await this.rideRepository.save(newDriver);;
     }
 
     throw new HttpException('Ride not found', HttpStatus.NOT_FOUND);
