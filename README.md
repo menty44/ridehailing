@@ -1,3 +1,54 @@
+## Description
+* Technologies used for the project are nodejs(NestJS) and Postgres
+* Install postgres in your machine
+* Create a database user, database password and eventually a database name of your choice 
+* Clone the project your pc
+* Create a `.env` file within the root of the project
+* Paste the below config in the `.env`
+
+<p></p>
+
+```
+        POSTGRES_HOST=localhost
+        POSTGRES_PORT=5432
+        POSTGRES_USER=yourDBUser
+        POSTGRES_PASSWORD=yourDBPassword
+        POSTGRES_DB=yourDB
+```
+
+* Within the root of the project you will find and sql file, import it in your database so that you may have temp data for you to tinker with
+* Install packages using this command `npm i`
+* Start the project using this command `npm run start:dev`
+* Access the app using the port `httos://localhost:3000`
+
+## Description
+How to login to the system;
+* Below are the demo users you can use to login and get the jwt token for auth in the other apis
+
+```agsl
+[
+    {
+      userId: 1,
+      username: 'john',
+      password: 'changeme',
+    },
+    {
+      userId: 2,
+      username: 'maria',
+      password: 'guess',
+    },
+  ]
+```
+* The Login endpoint is `http://localhost:3000/auth/login`
+* The Login payload is
+```{
+  "username": "john",
+  "password": "changeme"
+  }
+```
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
