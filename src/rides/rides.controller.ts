@@ -24,11 +24,6 @@ export class RideController {
     @Param('driverid') driverid: number,
     @Body() data: any,
   ) {
-    console.log(passengerid);
-    console.log(driverid);
-    console.log(`passengerid ${typeof passengerid}`);
-    console.log(`driverid ${typeof driverid}`);
-    console.log(data);
     return this.ridesService.create(+passengerid, +driverid, data);
   }
   @UseGuards(JwtAuthGuard)
