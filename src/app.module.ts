@@ -30,6 +30,7 @@ import { RidesModule } from './rides/rides.module';
     DriversModule,
     UsersModule,
     RidesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
