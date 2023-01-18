@@ -5,10 +5,8 @@ import Passenger from './entities/passenger.entity';
 import { PassengersService } from './passengers.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Passenger]),
-  ],
+  imports: [TypeOrmModule.forFeature([Passenger])],
   controllers: [UsersController],
-  providers: [PassengersService]
+  providers: [PassengersService],
 })
 export class PassengersModule {}

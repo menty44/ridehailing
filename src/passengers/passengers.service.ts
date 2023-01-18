@@ -7,12 +7,14 @@ import Passenger from './entities/passenger.entity';
 @Injectable()
 export class PassengersService {
   constructor(
-    @InjectRepository(Passenger) 
+    @InjectRepository(Passenger)
     private passengerRepository: Repository<Passenger>,
   ) {}
-  
+
   async create(createPassengerDto: CreatePassengerDto) {
-    const newPassenger = await this.passengerRepository.create(createPassengerDto);
+    const newPassenger = await this.passengerRepository.create(
+      createPassengerDto,
+    );
     await this.passengerRepository.save(newPassenger);
 
     return newPassenger;
@@ -29,18 +31,15 @@ export class PassengersService {
   find by @id
   */
   async findOne(id) {
-    const passenger = await this.passengerRepository.findOne({where: {id: id}});
+    const passenger = await this.passengerRepository.findOne({
+      where: { id: id },
+    });
     if (passenger) {
       return passenger;
     }
 
     throw new HttpException('Passenger not found', HttpStatus.NOT_FOUND);
   }
-
-  /**
-  find by @id
-  */
-  
 
   /**
   delete by @id

@@ -8,10 +8,9 @@ import Driver from './entities/ride.entity';
 @Injectable()
 export class RidesService {
   constructor(
-    @InjectRepository(Ride) 
+    @InjectRepository(Ride)
     private rideRepository: Repository<Ride>,
   ) {}
-  
   async create(createDriverDto: CreateRideDto) {
     const newDriver = await this.rideRepository.create(createDriverDto);
     await this.rideRepository.save(newDriver);
@@ -30,7 +29,7 @@ export class RidesService {
   find by @id
   */
   async findOne(id) {
-    const ride = await this.rideRepository.findOne({where: {id: id}});
+    const ride = await this.rideRepository.findOne({ where: { id: id } });
     if (ride) {
       return ride;
     }
@@ -42,13 +41,12 @@ export class RidesService {
   stopRide by @id
   */
   async stopRide(id) {
-    const ride = await this.rideRepository.findOne({where: {id: id}});
+    const ride = await this.rideRepository.findOne({ where: { id: id } });
     if (ride) {
-      ride.ridestatus = "done";
-      let updatedRide = await this.rideRepository.save(ride);
-      return updatedRide;
+      ride.ridestatus = 'done';
+      return await this.rideRepository.save(ride);
     }
-   
+
     throw new HttpException('Ride not found', HttpStatus.NOT_FOUND);
   }
 
@@ -56,7 +54,7 @@ export class RidesService {
   stopRide by @id
   */
   async ongoingRides() {
-    return  await this.rideRepository.find({where: {ridestatus: "ongoing"}});
+    return await this.rideRepository.find({ where: { ridestatus: 'ongoing' } });
   }
 
   /**

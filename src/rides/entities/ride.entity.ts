@@ -13,7 +13,7 @@ class Ride {
   public driverid: number;
 
   @Column()
-  public ridestatus:string;
+  public ridestatus: string;
 }
 
 export default Ride;

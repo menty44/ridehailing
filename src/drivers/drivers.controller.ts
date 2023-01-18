@@ -14,7 +14,7 @@ export class DriversController {
 
   @Get()
   async findAll() {
-   return await this.driversService.findAll();
+    return await this.driversService.findAll();
   }
 
   @Get(':id')
@@ -33,7 +33,6 @@ export class DriversController {
   delete(@Param('id') id: string) {
     return this.driversService.deleteSuspendedDriver(id);
   }
-
 
   @Delete(':id')
   remove(@Param('id') id: string) {

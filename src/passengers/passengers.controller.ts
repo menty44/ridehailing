@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpCode,
+} from '@nestjs/common';
 import { CreatePassengerDto } from './dto/create-passengers.dto';
 import { PassengersService } from './passengers.service';
 
@@ -13,7 +22,7 @@ export class UsersController {
 
   @Get()
   async findAll() {
-   return await this.passengersService.findAll();
+    return await this.passengersService.findAll();
   }
 
   @Get(':id')

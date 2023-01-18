@@ -16,7 +16,7 @@ import { join } from 'path';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/../**/*.entity.{js,ts}'],
-        
+
         synchronize: true, //should be false at production!
       }),
     }),

@@ -13,7 +13,7 @@ export class RideController {
 
   @Get()
   async findAll() {
-   return await this.ridesService.findAll();
+    return await this.ridesService.findAll();
   }
 
   @Get(':id')
@@ -32,7 +32,6 @@ export class RideController {
   ongoingRides() {
     return this.ridesService.ongoingRides();
   }
-
 
   @Delete(':id')
   remove(@Param('id') id: string) {

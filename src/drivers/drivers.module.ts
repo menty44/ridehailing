@@ -4,12 +4,9 @@ import { DriversController } from './drivers.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import Driver from './entities/driver.entity';
 
-
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Driver]),
-  ],
+  imports: [TypeOrmModule.forFeature([Driver])],
   controllers: [DriversController],
-  providers: [DriversService]
+  providers: [DriversService],
 })
 export class DriversModule {}
