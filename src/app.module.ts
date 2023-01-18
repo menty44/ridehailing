@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { PassengersModule } from './passengers/passengers.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
+import { RidesModule } from './rides/rides.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UsersService } from './users/users.service';
     PassengersModule,
     DriversModule,
     UsersModule,
+    RidesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
