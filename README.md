@@ -91,21 +91,9 @@ Create Ride endpoint Method is POST
 }
 ```
 
-Stop Ride endpoint Method is POST
-* The Login endpoint is `http://localhost:3000/rides/:passengerid/:driverid`
-* The Login payload is
-```
-{
-    "pickup": {
-        "latitude": "12.92",
-        "longitude": "98.9393"
-    },
-    "destination": {
-        "latitude": "12.92",
-        "longitude": "98.9393"
-    }
-}
-```
+Stop Ride endpoint Method is GET
+* The Login endpoint is `http://localhost:3000/rides/ongoing`
+
 
 
 <p align="center">
