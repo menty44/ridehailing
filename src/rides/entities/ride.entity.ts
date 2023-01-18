@@ -12,6 +12,12 @@ class Ride {
   @Column()
   public driverid: number;
 
+  @Column('jsonb', { nullable: false })
+  pickup?: object[];
+
+  @Column('jsonb', { nullable: false })
+  destination?: object[];
+
   @Column()
   public ridestatus: string;
 }

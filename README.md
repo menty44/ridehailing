@@ -39,6 +39,7 @@ How to login to the system;
     },
   ]
 ```
+User Login  Method is POST
 * The Login endpoint is `http://localhost:3000/auth/login`
 * The Login payload is
 ```{
@@ -47,6 +48,64 @@ How to login to the system;
   }
 ```
 
+Add driver endpoint Method is POST
+* The Login endpoint is `http://localhost:3000/drivers`
+* The payload is
+```
+{
+    "name": "Fredrick Oluoch",
+    "phonenumber": "+2547222333444"
+}
+```
+
+Suspend driver endpoint Method is POST
+* The Login endpoint is `http://localhost:3000/drivers/3/suspend`
+
+Delete suspended driver endpoint Method is DELETE
+* The Login endpoint is `http://localhost:3000/drivers/3/suspend`
+
+
+Add Passenger endpoint Method is POST
+* The Login endpoint is `http://localhost:3000/passengers`
+* The payload is
+```
+{
+    "name": "Fredrick Oluoch",
+    "phonenumber": "+254733999888"
+}
+```
+
+Create Ride endpoint Method is POST
+* The Login endpoint is `http://localhost:3000/rides/:passengerid/:driverid`
+* The Login payload is
+```
+{
+    "pickup": {
+        "latitude": "12.92",
+        "longitude": "98.9393"
+    },
+    "destination": {
+        "latitude": "12.92",
+        "longitude": "98.9393"
+    }
+}
+```
+
+Stop Ride endpoint Method is POST
+* The Login endpoint is `http://localhost:3000/rides/:passengerid/:driverid`
+* The Login payload is
+```
+{
+    "pickup": {
+        "latitude": "12.92",
+        "longitude": "98.9393"
+    },
+    "destination": {
+        "latitude": "12.92",
+        "longitude": "98.9393"
+    }
+}
+```
 
 
 <p align="center">
