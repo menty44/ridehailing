@@ -58,6 +58,18 @@ Add driver endpoint Method is POST
 }
 ```
 
+or
+
+```agsl
+curl --location --request GET 'http://localhost:3000/passengers' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTY3NDAyMjQyMCwiZXhwIjoxNjc0MDIzMDIwfQ.YFXEKvrngxIk4GSPOU_--gQW7fTbsmsrLvbgwoS9ihc' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Fredrick Oluoch",
+    "phonenumber": "+254720106420"
+}'
+```
+
 Suspend driver endpoint Method is POST
 * The Login endpoint is `http://localhost:3000/drivers/3/suspend`
 
